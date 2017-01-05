@@ -1,3 +1,9 @@
+PATH
+  remote: ../twitch
+  specs:
+    twitch (0.0.1)
+      opal (> 0.10, < 1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -21,6 +27,7 @@ PLATFORMS
 DEPENDENCIES
   opal
   rack
+  twitch!
 
 BUNDLED WITH
    1.13.6
