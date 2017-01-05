@@ -31,5 +31,15 @@ module ControlSchema
 end
 Control.extend(ControlSchema)
 
+
+def load_from_src src
+  image = `new Image`
+  image.JS[:src] = src
+  image
+end
+
+$image_object = load_from_src '/russian_f1.png'
+
+
 player = Player.new(Vector[10, 10])
 Game.register player

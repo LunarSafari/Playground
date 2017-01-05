@@ -2,6 +2,8 @@ class Player
   def initialize position
     @speed = 0.2
     @position = position
+    @images = (0..3).map{|x| Image.new($image_object, [x * 32, 0], [32, 48]) }
+    @draw_index = 0
   end
 
   def update dt
@@ -24,5 +26,8 @@ class Player
 
   def draw canvas
     canvas.draw_rect(@position, [10, 10])
+    @draw_index = 0 if @draw_index == 4
+    canvas.draw_image(@images[@draw_index], @position)
+    @draw_index += 1
   end
 end

@@ -17,4 +17,5 @@ run Opal::Server.new { |s|
   s.append_path 'app'
   # need to set the index explicitly for opal server to pick it up
   s.index_path = 'index.html.erb'
+  s.public_dir = 'assets'
 }
