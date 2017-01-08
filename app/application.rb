@@ -7,29 +7,8 @@ include Twitch
 canvas = `document.querySelector('#canvas')`
 canvas = Canvas.new(canvas, width: 800, height: 600)
 
-Game.init(canvas)
-Game.loop!
-
-Control.init
-
-module ControlSchema
-  def go_left?
-    @keydown[:ArrowLeft]
-  end
-
-  def go_right?
-    @keydown[:ArrowRight]
-  end
-
-  def go_up?
-    @keydown[:ArrowUp]
-  end
-
-  def go_down?
-    @keydown[:ArrowDown]
-  end
-end
-Control.extend(ControlSchema)
+game = Game.new(canvas)
+game.loop!
 
 
 def load_from_src src
@@ -41,5 +20,5 @@ end
 $image_object = load_from_src '/russian_f1.png'
 
 
-player = Player.new(Vector[10, 10])
-Game.register player
+player = Player.new(Vector[100, 100])
+game.register player

@@ -9,15 +9,15 @@ class Player
   def update dt
     velocity = Vector[0, 0]
 
-    if Control.go_left?
+    if control.go_left?
       velocity += Vector[-1, 0]
-    elsif Control.go_right?
+    elsif control.go_right?
       velocity += Vector[1, 0]
     end
 
-    if Control.go_up?
+    if control.go_up?
       velocity += Vector[0, -1]
-    elsif Control.go_down?
+    elsif control.go_down?
       velocity += Vector[0, 1]
     end
 
@@ -25,9 +25,33 @@ class Player
   end
 
   def draw canvas
-    canvas.draw_rect(@position, [10, 10])
+    canvas.draw_indicator(@position, 15)
     @draw_index = 0 if @draw_index == 4
-    canvas.draw_image(@images[@draw_index], @position)
+    canvas.draw_image(@images[@draw_index], @position, [0.5, 0.5])
     @draw_index += 1
+  end
+
+  def self.control
+    @control ||= Control.new.define do
+      def go_left?
+        keydown[:ArrowLeft]
+      end
+
+      def go_right?
+        keydown[:ArrowRight]
+      end
+
+      def go_up?
+        keydown[:ArrowUp]
+      end
+
+      def go_down?
+        keydown[:ArrowDown]
+      end
+    end
+  end
+
+  def control
+    self.class.control
   end
 end
